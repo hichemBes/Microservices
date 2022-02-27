@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "23b49d99-9903-484c-b7b3-051d732744c5": {
+      "ProjectGuid": "23b49d99-9903-484c-b7b3-051d732744c5",
+      "DisplayName": "Domain",
+      "ColorIndex": 0
+    },
+    "fdd07e36-428f-468d-8407-69376eb3157f": {
+      "ProjectGuid": "fdd07e36-428f-468d-8407-69376eb3157f",
+      "DisplayName": "Data",
+      "ColorIndex": 1
+    },
+    "0f5e3432-ee0f-4ab3-967a-582b809169ed": {
+      "ProjectGuid": "0f5e3432-ee0f-4ab3-967a-582b809169ed",
+      "DisplayName": "userApi",
+      "ColorIndex": 2
+    },
+    "63e545bf-3d82-4c71-b2c1-aa76ad1dbcf2": {
+      "ProjectGuid": "63e545bf-3d82-4c71-b2c1-aa76ad1dbcf2",
+      "DisplayName": "Infrastructure",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Fichiers divers",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 4
+}
