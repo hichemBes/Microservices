@@ -21,6 +21,7 @@ namespace Infrastructure
             services.AddTransient<IRequestHandler<PostId<Role>, Role>, PostIdGenericHandler<Role>>();
             services.AddTransient<IRequestHandler<PostId<User>, User>, PostIdGenericHandler<User>>();
             services.AddTransient<IRequestHandler<DeleteGeneric<User>,string>, DeleteGenericHandler<User>>();
+            services.AddTransient<IRequestHandler<PutGeneric<User>, string>, PutGenericHandler<User>>();
 
             services.AddTransient<IRequestHandler<GetGenericQueryById<User>, User>, GetByidHandler<User>>();
 

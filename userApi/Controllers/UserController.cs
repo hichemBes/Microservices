@@ -37,9 +37,9 @@ namespace userApi.Controllers
 
         }
         [HttpPost("postUser")]
-        public User Post([FromBody] User Action)
+        public UserDto Post([FromBody] UserDto Action)
         {
-            return _mediator.Send(new PostId<User>(Action)).Result;
+            return _mediator.Send(new PostId<UserDto>(Action)).Result;
         }
         [HttpDelete("deleteUser")]
         public string Delete(Guid id)
@@ -51,6 +51,12 @@ namespace userApi.Controllers
         {
           var   data =_mediator.Send(new GetGenericQueryById<User>(g => g.userId== id)).Result;
             return _mapper.Map<UserDto>(data);
+        }
+        [HttpPut("putUser")]
+        public string Put([FromBody] User User)
+        {
+            return _mediator.Send(new PutGeneric<User>(User)).Result;
+
         }
     }
 }

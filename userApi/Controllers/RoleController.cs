@@ -47,5 +47,6 @@ namespace userApi.Controllers
         {
             return _mediator.Send(new DeleteGeneric<Role>(id)).Result;
         }
+       
     }
 }

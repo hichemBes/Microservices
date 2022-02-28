@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Domain.Models
@@ -8,10 +9,10 @@ namespace Domain.Models
     {
         public Guid userId { get; set; }
         public string name { get; set; }
+    
         public double Cin { get; set; }
         public Guid  fk_RoleId { get; set; }
         public Role Role { get; set; }
-
 
     }
 }
