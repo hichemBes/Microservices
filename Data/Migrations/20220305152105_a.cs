@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class init : Migration
+    public partial class a : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,33 +26,60 @@ namespace Data.Migrations
                 {
                     userId = table.Column<Guid>(nullable: false),
                     name = table.Column<string>(nullable: true),
-                    Cin = table.Column<double>(nullable: false),
-                    fk_RoleId = table.Column<Guid>(nullable: false)
+                    Cin = table.Column<string>(nullable: true),
+                    fk_Filliale = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.userId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RoleOfUser",
+                columns: table => new
+                {
+                    roleofuserId = table.Column<Guid>(nullable: false),
+                    Fk_User = table.Column<Guid>(nullable: false),
+                    FK_Role = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleOfUser", x => x.roleofuserId);
                     table.ForeignKey(
-                        name: "FK_Users_Roles_fk_RoleId",
-                        column: x => x.fk_RoleId,
+                        name: "FK_RoleOfUser_Roles_FK_Role",
+                        column: x => x.FK_Role,
                         principalTable: "Roles",
                         principalColumn: "RoleId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoleOfUser_Users_Fk_User",
+                        column: x => x.Fk_User,
+                        principalTable: "Users",
+                        principalColumn: "userId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_fk_RoleId",
-                table: "Users",
-                column: "fk_RoleId");
+                name: "IX_RoleOfUser_FK_Role",
+                table: "RoleOfUser",
+                column: "FK_Role");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoleOfUser_Fk_User",
+                table: "RoleOfUser",
+                column: "Fk_User");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "RoleOfUser");
 
             migrationBuilder.DropTable(
                 name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

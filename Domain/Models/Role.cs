@@ -10,6 +10,6 @@ namespace Domain.Models
         public Guid RoleId { get; set; }
         public string Name { get; set; }
         public string label { get; set; }
-        public ICollection<User> User { get; set; }
+        public ICollection<RoleOfUser> roleOfUsers { get; set; }
     }
 }

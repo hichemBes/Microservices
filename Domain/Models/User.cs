@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using userApi.ForiegnDtos;
 
 namespace Domain.Models
 {
@@ -10,9 +11,13 @@ namespace Domain.Models
         public Guid userId { get; set; }
         public string name { get; set; }
     
-        public double Cin { get; set; }
-        public Guid  fk_RoleId { get; set; }
-        public Role Role { get; set; }
+        public string  Cin { get; set; }
+      
+        public Guid  fk_Filliale { get; set; }
+
+        public ICollection<RoleOfUser> roleOfUsers{ get; set; }
+
+
 
     }
 }

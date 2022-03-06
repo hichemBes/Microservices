@@ -9,7 +9,7 @@ namespace userApi.Dto
         public Guid RoleId { get; set; }
         public string Name { get; set; }
         public string label { get; set; }
-        public int? nbre_users { get; set; }
+      
 
     }
 }

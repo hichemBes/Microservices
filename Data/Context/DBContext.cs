@@ -13,7 +13,8 @@ namespace Data.Context
         }
         public DbSet<User>Users { get; set; }
         public DbSet<Role>Roles { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet <RoleOfUser> RoleOfUser { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Settings: set Primary keys
 
@@ -23,20 +24,22 @@ namespace Data.Context
 
          modelBuilder.Entity<User>().HasKey(u=>u.userId);
 
+            modelBuilder.Entity<RoleOfUser>().HasKey(u => u.roleofuserId);
+
+
 
 
             #endregion
 
             #region Settings: set one to many relations
-            //Project_Task
-           
-            modelBuilder.Entity<User>()
-                                   .HasOne(r => r.Role)
-                                   .WithMany(n => n.User)
-                                   .HasForeignKey(n => n.fk_RoleId);
-            modelBuilder.Entity<Role>()
-      .HasMany(c => c.User)
-      .WithOne(e => e.Role);
+            // setting :key
+            modelBuilder.Entity<RoleOfUser>().HasOne(r => r.role).WithMany(n => n.roleOfUsers).HasForeignKey(x => x.FK_Role);
+
+            modelBuilder.Entity<RoleOfUser>().HasOne(r => r.user).WithMany(n => n.roleOfUsers).HasForeignKey(x => x.Fk_User);
+
+
+
+
 
 
             #endregion

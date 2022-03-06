@@ -41,6 +41,7 @@ namespace userApi
             services.AddSwaggerGen();
             services.AddAutoMapper(typeof(Startup));
             // Cors Origin configuring
+            
             services.AddCors(c =>
             {
                 c.AddPolicy("AllowAll",
@@ -58,6 +59,7 @@ namespace userApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors("AllowAll");
             }
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -66,7 +68,7 @@ namespace userApi
             });
 
             app.UseHttpsRedirection();
-
+            app.UseCors("AllowAll");
             app.UseRouting();
 
             app.UseAuthorization();

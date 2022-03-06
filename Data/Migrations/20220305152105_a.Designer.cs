@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20220224212735_first")]
-    partial class first
+    [Migration("20220305152105_a")]
+    partial class a
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,16 +38,37 @@ namespace Data.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("Domain.Models.RoleOfUser", b =>
+                {
+                    b.Property<Guid>("roleofuserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FK_Role")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Fk_User")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("roleofuserId");
+
+                    b.HasIndex("FK_Role");
+
+                    b.HasIndex("Fk_User");
+
+                    b.ToTable("RoleOfUser");
+                });
+
             modelBuilder.Entity("Domain.Models.User", b =>
                 {
                     b.Property<Guid>("userId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Cin")
-                        .HasColumnType("float");
+                    b.Property<string>("Cin")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("fk_RoleId")
+                    b.Property<Guid>("fk_Filliale")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("name")
@@ -55,16 +76,20 @@ namespace Data.Migrations
 
                     b.HasKey("userId");
 
-                    b.HasIndex("fk_RoleId");
-
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Domain.Models.User", b =>
+            modelBuilder.Entity("Domain.Models.RoleOfUser", b =>
                 {
-                    b.HasOne("Domain.Models.Role", "Role")
-                        .WithMany("users")
-                        .HasForeignKey("fk_RoleId")
+                    b.HasOne("Domain.Models.Role", "role")
+                        .WithMany("roleOfUsers")
+                        .HasForeignKey("FK_Role")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.User", "user")
+                        .WithMany("roleOfUsers")
+                        .HasForeignKey("Fk_User")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

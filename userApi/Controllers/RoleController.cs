@@ -28,25 +28,34 @@ namespace userApi.Controllers
             _mapper = mapper;
 
         }
-        [HttpGet]
-        public IEnumerable<RoleDto> Get()
-        {
-            var data = _mediator.Send(new GetAllGenericQuery<Role>(includes:
-               i => i.Include(s => s.User))).Result.Select(data => _mapper.Map<RoleDto>(data));
 
-            return data;
 
-        }
+
         [HttpPost("postRole")]
         public Role Post([FromBody] Role Action)
         {
             return _mediator.Send(new PostId<Role>(Action)).Result;
+        }
+
+
+        [HttpGet("getById")]
+        public Role GetbyId(Guid id)
+        {
+            var data = _mediator.Send(new GetGenericQueryById<Role>(g => g.RoleId == id)).Result;
+            return _mapper.Map<Role>(data);
         }
         [HttpDelete("deleteRole")]
         public string Delete(Guid id)
         {
             return _mediator.Send(new DeleteGeneric<Role>(id)).Result;
         }
-       
+        [HttpPut("updateRole")]
+        public string Put([FromBody] Role Role)
+        {
+            return _mediator.Send(new PutGeneric<Role>(Role)).Result;
+        }
+
+
     }
 }
+//}
